@@ -8,4 +8,5 @@ exec /go/bin/shapeshifter-dispatcher \
     -transports $TRANSPORTS \
     -bindaddr $TRANSPORTS-$BINDADDR \
     -logLevel $LOGLEVEL \
+    -enableLogging \
     $ARGS

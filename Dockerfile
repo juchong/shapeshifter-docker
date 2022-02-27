@@ -34,11 +34,6 @@ RUN mkdir -p \
 RUN git clone https://github.com/OperatorFoundation/shapeshifter-dispatcher.git ${GOPATH}/shapeshifter-dispatcher/
 RUN cd ${GOPATH}/shapeshifter-dispatcher && go build && go install
 
-# Check Shapeshifter
-RUN ./go/bin/shapeshifter-dispatcher -showVersion
-
-RUN ls /tmp/
-
 # Expose Ports
 EXPOSE 2222/tcp
 EXPOSE 3333/tcp
