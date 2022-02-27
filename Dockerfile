@@ -7,6 +7,7 @@ ENV TRANSPORTS obfs4
 ENV BINDADDR 127.0.0.1:2222
 ENV LOGLEVEL DEBUG
 ENV ARGS=
+ENV TOR_PT_STATE_LOCATION /logs
 
 ADD run.sh /run.sh
 RUN chmod +x /run.sh
@@ -14,7 +15,8 @@ RUN chmod +x /run.sh
 # Install Linux packages
 RUN apk add -U --no-cache \
   git \
-  go 
+  go \
+  netcat-openbsd
 
 # Configure Go
 ENV GOROOT /usr/lib/go
@@ -25,7 +27,8 @@ RUN mkdir -p \
     ${GOPATH}/src \
     ${GOPATH}/bin \
     ${GOPATH}/shapeshifter-dispatcher \
-    /config
+    /config \
+    /logs
 
 # Grab and Build Shapeshifter
 RUN git clone https://github.com/OperatorFoundation/shapeshifter-dispatcher.git ${GOPATH}/shapeshifter-dispatcher/
@@ -42,5 +45,6 @@ EXPOSE 3333/tcp
 
 # Set Up Volumes
 VOLUME /config
+VOLUME /logs
 
 CMD /run.sh
