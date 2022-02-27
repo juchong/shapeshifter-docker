@@ -3,7 +3,7 @@
 exec /go/bin/shapeshifter-dispatcher \
     -$PMODE \
     -$OMODE \
-    -state $STATE \
+    -state /config/ \
     -orport $ORPORT \
     -transports $TRANSPORTS \
     -bindaddr $TRANSPORTS-$BINDADDR \

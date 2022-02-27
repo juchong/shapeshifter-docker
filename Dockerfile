@@ -2,7 +2,6 @@ FROM alpine
 
 ENV PMODE transparent
 ENV OMODE server
-ENV STATE state
 ENV ORPORT 127.0.0.1:3333
 ENV TRANSPORTS obfs4
 ENV BINDADDR 127.0.0.1:2222
@@ -22,7 +21,11 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN mkdir -p ${GOPATH}/src ${GOPATH}/bin ${GOPATH}/shapeshifter-dispatcher
+RUN mkdir -p \
+    ${GOPATH}/src \
+    ${GOPATH}/bin \
+    ${GOPATH}/shapeshifter-dispatcher \
+    /config
 
 # Grab and Build Shapeshifter
 RUN git clone https://github.com/OperatorFoundation/shapeshifter-dispatcher.git ${GOPATH}/shapeshifter-dispatcher/
@@ -36,5 +39,8 @@ RUN ls /tmp/
 # Expose Ports
 EXPOSE 2222/tcp
 EXPOSE 3333/tcp
+
+# Set Up Volumes
+VOLUME /config
 
 CMD /run.sh
