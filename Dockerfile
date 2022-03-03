@@ -4,7 +4,7 @@ ENV PMODE transparent
 ENV OMODE server
 ENV ORPORT 127.0.0.1:3333
 ENV TRANSPORTS obfs4
-ENV BINDADDR 127.0.0.1:2222
+ENV BINDADDR 0.0.0.0:2222
 ENV LOGLEVEL DEBUG
 ENV ARGS=
 
@@ -34,7 +34,6 @@ RUN cd ${GOPATH}/shapeshifter-dispatcher && go build && go install
 
 # Expose Ports
 EXPOSE 2222/tcp
-EXPOSE 3333/tcp
 
 # Set Up Volumes
 VOLUME /config
