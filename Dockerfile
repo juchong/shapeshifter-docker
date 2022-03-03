@@ -1,3 +1,11 @@
+###############################################################################################
+# File Name: Dockerfile
+# Description: Installs go and builds shapeshifter-dispatcher in a Docker container
+# Args:
+# Author: Juan Chong
+# Email: juanjchong@gmail.com
+###############################################################################################
+
 FROM alpine
 
 ENV ARGS=
